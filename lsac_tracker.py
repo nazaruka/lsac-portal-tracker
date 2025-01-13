@@ -182,6 +182,10 @@ def get_status(school_name, data_arr, driver):
             data_arr += [full_text, "01/01/0001"]
         else:
             split_arr = full_text.split(" Date: ", 1)
+
+            # Handle case for blank date - same "impossible" date for sorting
+            if split_arr[1] == "": split_arr[1] = "01/01/0001"
+            
             data_arr += split_arr
     except:
         # If no "Application Status" appears, return this message with the manual tracker link
